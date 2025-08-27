@@ -1,6 +1,6 @@
 # AI-Powered Financial News Analyzer
 A system that analyzes real-time financial news using GPT-4 to generate trading signals and risk assessments for equity investments.
-Features<br>
+Features
 
 #### AI Sentiment Analysis
 
@@ -29,21 +29,21 @@ Visual metrics and detailed article breakdowns
 
 #### Technology Stack
 
-AI/ML: OpenAI GPT-4 API, Natural Language Processing
-Data: NewsAPI, Yahoo Finance API integration
-Backend: Python, pandas for data processing
-Frontend: Streamlit web framework
+AI/ML: OpenAI GPT-4 API, Natural Language Processing<br>
+Data: NewsAPI, Yahoo Finance API integration<br>
+Backend: Python, pandas for data processing<br>
+Frontend: Streamlit web framework<br>
 APIs: RESTful API integration with error handling
 
 #### Sample Analysis Output
 ENHANCED ANALYSIS FOR AAPL:
 AI Sentiment: +0.16
-Market Change: -0.7%
-Confidence: 0.69
-Conviction: MEDIUM
-News Volume: 0.7/1.0
-AI and Market DISAGREE
-Setup Instructions
+| Market Change: -0.7%
+| Confidence: 0.69
+| Conviction: MEDIUM
+| News Volume: 0.7/1.0
+| AI and Market DISAGREE
+| Setup Instructions 
 
 #### Clone the repository:
 bashgit clone https://github.com/ian-menachery/ai-financial-analyzer.git
