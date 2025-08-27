@@ -69,8 +69,8 @@ Get actionable trading recommendations
 
 #### Project Highlights
 
--- Real-time data processing from multiple financial news sources
--- Advanced natural language processing using large language models
--- Risk management capabilities with confidence scoring and volatility detection
--- Production-ready web interface with responsive design
--- Quantitative validation through comparison of predictions with market performance
+Real-time data processing from multiple financial news sources
+<br>Advanced natural language processing using large language models
+<br>Risk management capabilities with confidence scoring and volatility detection
+<br>Production-ready web interface with responsive design
+<br>Quantitative validation through comparison of predictions with market performance
