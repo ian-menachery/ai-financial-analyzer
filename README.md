@@ -1,4 +1,4 @@
-AI-Powered Financial News Analyzer
+#AI-Powered Financial News Analyzer
 A system that analyzes real-time financial news using GPT-4 to generate trading signals and risk assessments for equity investments.
 Features
 AI Sentiment Analysis
