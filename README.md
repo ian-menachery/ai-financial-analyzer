@@ -1,29 +1,30 @@
 # AI-Powered Financial News Analyzer
 A system that analyzes real-time financial news using GPT-4 to generate trading signals and risk assessments for equity investments.
-Features
-AI Sentiment Analysis
+Features<br>
 
-Processes real-time financial news using OpenAI GPT-4
-Generates numerical sentiment scores (-1.0 to +1.0)
+#### AI Sentiment Analysis
+
+Processes real-time financial news using OpenAI GPT-4<br>
+Generates numerical sentiment scores (-1.0 to +1.0)<br>
 Provides BUY/SELL/HOLD recommendations with confidence levels
 
 #### Market Integration
 
-Fetches live stock price data and historical trends
-Compares AI predictions with actual market movements
+Fetches live stock price data and historical trends<br>
+Compares AI predictions with actual market movements<br>
 Identifies agreement/disagreement between sentiment and price action
 
 #### Risk Assessment
 
-Calculates confidence scores for each analysis
-Monitors news volume and article relevance
-Generates risk warnings for volatile or low-conviction signals
+Calculates confidence scores for each analysis<br>
+Monitors news volume and article relevance<br>
+Generates risk warnings for volatile or low-conviction signals<br>
 Provides conviction levels (HIGH/MEDIUM/LOW)
 
 #### Interactive Web Interface
 
-Streamlit dashboard for stock analysis
-Real-time analysis of publicly traded securities
+Streamlit dashboard for stock analysis<br>
+Real-time analysis of publicly traded securities<br>
 Visual metrics and detailed article breakdowns
 
 #### Technology Stack
