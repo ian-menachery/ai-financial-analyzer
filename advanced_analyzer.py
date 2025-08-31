@@ -2,6 +2,7 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 import re
+from news_filter import NewsFilter
 
 load_dotenv()
 
@@ -67,40 +68,58 @@ class AdvancedAnalyzer:
             return None
     
     def analyze_stock_sentiment(self, ticker):
-        """Analyze overall sentiment for a stock"""
+        """Analyze overall sentiment for a stock using filtered, high-quality news"""
         from news_collector import NewsCollector
         
         collector = NewsCollector()
-        news = collector.get_stock_news(ticker, days=5)
+        filter_system = NewsFilter()
         
-        if not news:
+        # Get raw news
+        raw_news = collector.get_stock_news(ticker, days=5)
+        
+        if not raw_news:
+            return None
+        
+        # Filter and rank articles by quality
+        filtered_news = filter_system.filter_and_rank_articles(raw_news, ticker)
+        
+        if not filtered_news:
+            print("No high-quality articles found after filtering")
             return None
         
         analyses = []
-        print(f"\nAnalyzing {len(news[:7])} articles for {ticker}...")
+        print(f"\nAnalyzing {len(filtered_news)} high-quality articles for {ticker}...")
         
-        for article in news[:7]:  # Analyze 7 articles
+        # Analyze only the filtered, high-quality articles
+        for article in filtered_news:
             analysis = self.analyze_article(article)
             if analysis:
+                # Weight the analysis by article quality
+                analysis['quality_weight'] = article['quality_score']
+                analysis['source_credibility'] = article['credibility_score']
                 analyses.append(analysis)
-                print(f"  {analysis['sentiment']:+.2f} | {analysis['signal']} | {analysis['title'][:50]}...")
+                print(f"  {analysis['sentiment']:+.2f} | {analysis['signal']} | Quality: {article['quality_score']:.2f} | {analysis['title'][:50]}...")
         
         if not analyses:
             return None
         
-        # Calculate overall metrics
-        avg_sentiment = sum(a['sentiment'] for a in analyses) / len(analyses)
+        # Calculate quality-weighted metrics
+        total_weight = sum(a['quality_weight'] for a in analyses)
+        weighted_sentiment = sum(a['sentiment'] * a['quality_weight'] for a in analyses) / total_weight
+        
         buy_signals = sum(1 for a in analyses if a['signal'] == 'BUY')
         sell_signals = sum(1 for a in analyses if a['signal'] == 'SELL')
         
         return {
             'ticker': ticker,
-            'avg_sentiment': avg_sentiment,
+            'avg_sentiment': weighted_sentiment,
             'total_articles': len(analyses),
             'buy_signals': buy_signals,
             'sell_signals': sell_signals,
-            'detailed_analyses': analyses
-        }
+            'detailed_analyses': analyses,
+            'raw_articles_count': len(raw_news),
+            'filtered_articles_count': len(filtered_news)
+    }
     def get_stock_price_data(self, ticker):
         """Get recent stock price data"""
         try:
